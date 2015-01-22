@@ -28,8 +28,8 @@ def read_file(auditname):
     return jdata
 
 def parseAudit(auditFile):
-    jdata = read_file(auditFile)
-    for i in jdata:
+    data = read_file(auditFile)
+    for i in data:
         json_decoded = json.loads(i)
         audit_record = json_decoded['audit_record']
         try:
