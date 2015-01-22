@@ -22,7 +22,7 @@ def read_file(auditname):
     if os.path.exists(auditname):
         try:
             jdata = open(auditname,'r')
-        except IOerror, e :
+        except IOError, e :
             print "Unable to open file: %s. %s" % (auditname, e) 
     
     return jdata
@@ -53,8 +53,8 @@ def getUniqueUsers(users):
 
 def main():
         global options
+        global user
         (options, args) = parse_options()
-        
         user=[]
 
         audit_file = options.filename
