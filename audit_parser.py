@@ -36,7 +36,6 @@ def parseAudit(auditFile):
         try:
             audit_user = ('%s') % (audit_record["priv_user"])
             audit_dt = audit_record["timestamp"]
-            print len(audit_user)
             if len(audit_user) != 0 and audit_user not in user:
              user.append((audit_dt, audit_user))
         except:
