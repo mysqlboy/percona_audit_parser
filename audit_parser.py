@@ -61,10 +61,10 @@ def main():
 
         parseAudit(audit_file)
 
-        print "=================="
-        print "uniq list of users"
-        print "=================="
-        getUniqueUsers(user)
+        # print "=================="
+        # print "uniq list of users"
+        # print "=================="
+        print len(getUniqueUsers(user))
 
 if __name__ == '__main__':
         main()
