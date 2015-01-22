@@ -53,7 +53,7 @@ def getUniqueUsers(users):
 
 def main():
         global options
-        global user=[]
+        user=[]
 
         audit_file = options.filename
 
