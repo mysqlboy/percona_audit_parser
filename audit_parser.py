@@ -52,8 +52,8 @@ def getUniqueUsers(users):
                 print i
 
 def main():
-        (options, args) = parse_options()
         global options
+        (options, args) = parse_options()
         
         user=[]
 
