@@ -19,6 +19,7 @@ def read_file(auditname):
     """
     Open and read the audit file
     """
+    jdata = ''
     if os.path.exists(auditname):
         try:
             jdata = open(auditname,'r')
