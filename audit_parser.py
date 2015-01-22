@@ -52,7 +52,9 @@ def getUniqueUsers(users):
                 print i
 
 def main():
+        (options, args) = parse_options()
         global options
+        
         user=[]
 
         audit_file = options.filename
