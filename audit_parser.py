@@ -2,69 +2,71 @@
 import json
 import os.path
 from optparse import OptionParser
+#
+
+
+
+#   TODO:
+#       - GREP
+#            - each flavour; mcafee, percona, mariadb
+#       - New modes
+
 
 def parse_options():
     """
     Parse options from the command line
     """
     parser = OptionParser()
-    parser.add_option("-f", "--file", dest="filename")
+    parser.add_option("-f", "--file", dest="filename", default="./audit.log")
 
+    #parser.add_option("-m", "--mode", default="logins", dest="mode")
     #(options, args) = parser.parse_args()
 
     return parser.parse_args()
 
 
-def read_file(auditname):
+def read_file(fn):
     """
     Open and read the audit file
     """
-    jdata = ''
-    if os.path.exists(auditname):
+    jdata = []
+    if os.path.exists(fn):
         try:
-            jdata = open(auditname,'r')
+            fdata = open(fn,'r')
         except IOError, e :
-            print "Unable to open file: %s. %s" % (auditname, e) 
-    
+            print "Unable to open file: %s. %s" % (fn, e)
+
+    for i in fdata:
+        jdata.append(i)
+
     return jdata
 
-def parseAudit(auditFile):
-    data = read_file(auditFile)
-    for i in data:
-        json_decoded = json.loads(i)
-        audit_record = json_decoded['audit_record']
-        try:
-            audit_user = ('%s') % (audit_record["priv_user"])
-            audit_dt = audit_record["timestamp"]
-            if len(audit_user) != 0 and audit_user not in user:
-             user.append((audit_dt, audit_user))
-        except:
-            pass
-
-def getUniqueUsers(users):
-        uniq = []
-        for i in user:
-                user_name = i[1]
-                uniq.append(user_name)
-
-        myset = set(uniq)
-        for i in myset:
-                print i
 
 def main():
         global options
         global user
+
         (options, args) = parse_options()
-        user=[]
 
         audit_file = options.filename
 
-        parseAudit(audit_file)
+        a = read_file(audit_file)
+        events = []
 
-        # print "=================="
-        # print "uniq list of users"
-        # print "=================="
-        print len(getUniqueUsers(user))
+        for i in a:
+            try:
+                event_date = json.dumps(json.loads(i)['audit_record']['timestamp'])
+                event_user = json.dumps(json.loads(i)['audit_record']['user'])
+                event = '%s,%s' % (event_user,event_date)
+                events.append(event)
+
+                # print event_user, event_date
+            except ValueError, e:
+                print e
+            except KeyError, e:
+                pass
+        
+        print min(events)
 
 if __name__ == '__main__':
         main()

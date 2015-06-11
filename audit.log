@@ -1,0 +1,8 @@
+{audit_record{"command_class": "select","user":"andrew"}}
+{audit_record{"command_class": "select","user":"andrew"}}
+{audit_record{"command_class": "select","user":"andrew"}}
+{audit_record{"command_class": "select","user":"ben"}}
+{audit_record{"command_class": "select","user":"ben"}}
+{audit_record{"command_class": "select","user":"andrew"}}
+{audit_record{"command_class": "select","user":"dave"}}
+{audit_record{"command_class": "select","user":"andrew"}}
